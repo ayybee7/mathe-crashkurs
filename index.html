@@ -5,125 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathe Crashkurs - Oberstufe & Abitur</title>
     <style>
+        /* Grunddesign und Smooth Scrolling für die Navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(45deg, #0f172a, #3b82f6, #7e22ce);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background-color: #050505; /* Tiefes Schwarz */
             color: #ffffff;
-            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Bewegliche graue/weiße Blobs im Hintergrund für den Glas-Effekt */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob1 {
+            width: 400px; height: 400px;
+            background: rgba(255, 255, 255, 0.15);
+            top: -10%; left: -10%;
+        }
+        .blob2 {
+            width: 500px; height: 500px;
+            background: rgba(100, 100, 100, 0.2);
+            bottom: -20%; right: -10%;
+            animation-delay: -5s;
+        }
+        .blob3 {
+            width: 300px; height: 300px;
+            background: rgba(200, 200, 200, 0.1);
+            top: 40%; left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        /* Navigation (Reiter) im Glas-Design */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(25, 25, 25, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
             display: flex;
             justify-content: center;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Seiten-Abschnitte */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            padding: 80px 20px 20px 20px; /* Platz für die Navigation */
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-container {
+        /* Der Liquid Glass Effekt für die Karten */
+        .glass-box {
             width: 90%;
             max-width: 900px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03); /* Sehr transparent für Schwarz-Weiß-Look */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 24px;
             padding: 50px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             text-align: center;
-            margin: 40px 0;
+            transition: transform 0.1s ease-out, border-radius 0.1s ease-out; /* Für flüssiges Scroll-Skript */
+            will-change: transform, border-radius;
         }
 
-        h1 {
+        h1, h2 {
             font-size: 3em;
             margin-bottom: 10px;
             font-weight: 700;
             letter-spacing: -1px;
         }
 
-        p.subtitle {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            opacity: 0.9;
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #aaa;
         }
 
-        .features {
+        /* Raster für das Konzept */
+        .grid {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin-bottom: 40px;
             gap: 20px;
+            margin-top: 30px;
         }
 
-        .feature-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .grid-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 25px;
             flex: 1;
             min-width: 220px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-box h3 {
-            margin-top: 0;
-            font-size: 1.4em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 10px;
         }
 
         .cta-button {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            padding: 16px 36px;
-            font-size: 1.2em;
+            background: #fff;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.1em;
             border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s;
         }
 
         .cta-button:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #ccc;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="glass-container">
-        <h1>Mathe Abi-Crashkurs</h1>
-        <p class="subtitle">Komplexe Formeln, einfach erklärt. Dein roter Faden durch die Oberstufen-Mathematik.</p>
-        
-        <div class="features">
-            <div class="feature-box">
-                <h3>📈 Analysis</h3>
-                <p>Ableitungsregeln, Integralrechnung und komplette Kurvendiskussionen meisterhaft anwenden.</p>
-            </div>
-            <div class="feature-box">
-                <h3>📐 Geometrie</h3>
-                <p>Vektoren, Ebenengleichungen und Abstände im Raum wirklich räumlich verstehen.</p>
-            </div>
-            <div class="feature-box">
-                <h3>🎲 Stochastik</h3>
-                <p>Baumdiagramme, Binomialverteilung und Hypothesentests sicher berechnen.</p>
+
+    <!-- Hintergrund-Elemente -->
+    <div class="bg-blob blob1"></div>
+    <div class="bg-blob blob2"></div>
+    <div class="bg-blob blob3"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#start">Startseite</a>
+        <a href="#konzept">Konzept</a>
+        <a href="#preise">Preise</a>
+        <a href="#ueber-uns">Über Uns</a>
+    </nav>
+
+    <!-- Abschnitt 1: Startseite -->
+    <section id="start">
+        <div class="glass-box">
+            <h1>Mathe Abi-Crashkurs</h1>
+            <p>Monochromes Design. Kristallklare Erklärungen. Dein Weg durch die Oberstufen-Mathematik, reduziert auf das Wesentliche.</p>
+            <a href="#preise" class="cta-button">Jetzt starten</a>
+        </div>
+    </section>
+
+    <!-- Abschnitt 2: Konzept -->
+    <section id="konzept">
+        <div class="glass-box">
+            <h2>Unser Konzept</h2>
+            <p>Wir lassen den Schulbuch-Jargon weg und fokussieren uns auf die drei Säulen des Abiturs.</p>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Analysis</h3>
+                    <p>Kurvendiskussionen und Integrale systematisch knacken.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Geometrie</h3>
+                    <p>Vektoren im Raum greifbar und logisch verstehen.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Stochastik</h3>
+                    <p>Wahrscheinlichkeiten und Tests sicher berechnen.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <a href="mailto:deine-email@adresse.de" class="cta-button">Jetzt Platz sichern</a>
-    </div>
+    <!-- Abschnitt 3: Preise -->
+    <section id="preise">
+        <div class="glass-box">
+            <h2>Preise</h2>
+            <p>Transparente Modelle ohne versteckte Kosten.</p>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Einzelstunde</h3>
+                    <p>45€ / 60 Minuten<br><br>Intensive 1-zu-1 Betreuung.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Crashkurs-Paket</h3>
+                    <p>350€ / 10 Stunden<br><br>Die komplette Abitur-Vorbereitung.</p>
+                </div>
+            </div>
+            <a href="mailto:deine-email@adresse.de" class="cta-button">Kurs buchen</a>
+        </div>
+    </section>
+
+    <!-- Abschnitt 4: Über Uns -->
+    <section id="ueber-uns">
+        <div class="glass-box">
+            <h2>Über Uns</h2>
+            <p>Erfahrene Tutoren, die wissen, worauf es in den Prüfungen wirklich ankommt. Wir haben die Methoden entwickelt, die dir die Sicherheit für Bestnoten geben.</p>
+        </div>
+    </section>
+
+    <!-- JavaScript für die Scroll-Verformung -->
+    <script>
+        // Dieses Skript greift alle Glas-Boxen auf und verändert sie beim Scrollen
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const glassBoxes = document.querySelectorAll('.glass-box');
+
+            glassBoxes.forEach((box, index) => {
+                // Berechnet die Position der Box relativ zum Sichtfeld
+                const boxTop = box.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                // Nur animieren, wenn die Box in der Nähe des Sichtfelds ist
+                if (boxTop < windowHeight && boxTop > -windowHeight) {
+                    // Verschiebung (Parallax) auf der Y-Achse
+                    const translateY = (boxTop - windowHeight / 2) * 0.1;
+                    
+                    // Verformung: Border-Radius pulsiert dynamisch zwischen 20px und 60px
+                    const borderRadius = 24 + Math.abs(Math.sin((scrollY + index * 200) * 0.005)) * 40;
+
+                    // Wendet die berechneten Werte auf das HTML-Element an
+                    box.style.transform = `translateY(${translateY}px)`;
+                    box.style.borderRadius = `${borderRadius}px`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
