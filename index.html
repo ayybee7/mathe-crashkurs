@@ -107,6 +107,29 @@
             padding: 25px;
             flex: 1;
             min-width: 220px;
+            position: relative;
+        }
+
+        /* Hervorgehobene Karte (Highlight für den Crashkurs) */
+        .grid-item.highlight {
+            background: rgba(255, 255, 255, 0.08); /* Etwas heller */
+            border: 1px solid rgba(255, 255, 255, 0.6); /* Deutlicherer Rand */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15); /* Leichtes Leuchten */
+        }
+
+        /* Kleines Schildchen für das Highlight */
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #fff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Styling für die Tabs (Reiter) */
@@ -140,12 +163,12 @@
         }
 
         .tab-content {
-            display: none; /* Versteckt Inhalte standardmäßig */
+            display: none; 
             animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-content.active {
-            display: block; /* Zeigt den aktiven Reiter an */
+            display: block; 
         }
 
         @keyframes fadeIn {
@@ -160,6 +183,19 @@
             font-style: italic;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
+        }
+
+        /* Anklickbarer Link im Text */
+        .text-link {
+            color: #fff;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .text-link:hover {
+            color: #ccc;
         }
 
         .cta-button {
@@ -194,7 +230,7 @@
     <section id="start">
         <div class="glass-box">
             <h1>Mathe Abi-Crashkurs</h1>
-            <p>Dein Weg durch die Oberstufen-Mathematik, reduziert auf das Wesentliche.</p>
+            <p>Monochromes Design. Kristallklare Erklärungen. Dein Weg durch die Oberstufen-Mathematik, reduziert auf das Wesentliche.</p>
             <a href="#angebot" class="cta-button">Jetzt starten</a>
         </div>
     </section>
@@ -224,7 +260,6 @@
         <div class="glass-box">
             <h2>Unser Angebot</h2>
             
-            <!-- Die Buttons für die Reiter -->
             <div class="tab-container">
                 <button class="tab-btn active" onclick="switchTab(event, 'dauerhaft')">Dauerhaft</button>
                 <button class="tab-btn" onclick="switchTab(event, 'crashkurs')">Crashkurs</button>
@@ -249,19 +284,27 @@
                         <p>Du brauchst keinen klassischen Erklär-Unterricht, sondern Hilfe bei speziellen Aufgaben? Wir besprechen in kleinen Gruppen individuelle Probleme, erarbeiten einfache Lösungen und bereiten uns gezielt vor.</p>
                     </div>
                 </div>
+                <p class="combo-note">Flexibel lernen: Alle unsere Angebote sind individuell miteinander kombinierbar.</p>
             </div>
 
-            <!-- Inhalt für "Crashkurs" (Platzhalter) -->
+            <!-- Inhalt für "Crashkurs" -->
             <div id="crashkurs" class="tab-content">
                 <div class="grid">
-                    <div class="grid-item" style="width: 100%;">
+                    <div class="grid-item">
+                        <h3>Individueller Crashkurs</h3>
+                        <p class="subtitle">2 – 10 Stunden</p>
+                        <p>Maximale Flexibilität im 1-zu-1-Format. Wir bereiten dich punktgenau auf deine Prüfung vor – exakt abgestimmt auf dein Ziel, dein Vorwissen und deinen Zeitplan. Wir passen das Tempo komplett an dich an und schließen gezielt deine Lücken.</p>
+                    </div>
+                    <div class="grid-item highlight">
+                        <span class="badge">Bestseller</span>
                         <h3>Intensiv-Crashkurs</h3>
-                        <p>Hier kommt später dein Text und die Boxen für den Crashkurs hin. Überleg dir in Ruhe, wie du diesen Bereich aufbauen möchtest.</p>
+                        <p class="subtitle">Preis-Leistungs-Sieger</p>
+                        <p>Unser bewährter Standardkurs, perfekt abgestimmt auf die anstehenden Themen und Prüfungen. Wir bauen das nötige Wissen in kürzester Zeit von Grund auf auf, ohne zu hetzen. Mit gezielten Übungsaufgaben festigen wir das Gelernte direkt.</p>
                     </div>
                 </div>
+                <p class="combo-note">Den genauen Ablauf und das Konzept unserer Crashkurse kannst du <a href="#konzept" class="text-link">hier</a> nachlesen.</p>
             </div>
 
-            <p class="combo-note">Flexibel lernen: Alle unsere Angebote sind individuell miteinander kombinierbar.</p>
             <a href="mailto:deine-email@adresse.de" class="cta-button">Kurs anfragen</a>
         </div>
     </section>
@@ -274,7 +317,6 @@
     </section>
 
     <script>
-        // Skript für die Scroll-Verformung der großen Glas-Boxen
         window.addEventListener('scroll', () => {
             const windowHeight = window.innerHeight;
             const scrollY = window.scrollY;
@@ -298,21 +340,17 @@
             });
         });
 
-        // Skript für das Umschalten der Reiter (Dauerhaft / Crashkurs)
         function switchTab(event, tabName) {
-            // Verstecke alle Tab-Inhalte
             let tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].classList.remove("active");
             }
 
-            // Entferne die "active" Klasse von allen Buttons
             let tabBtns = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tabBtns.length; i++) {
                 tabBtns[i].classList.remove("active");
             }
 
-            // Zeige den aktuellen Tab an und markiere den Button
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
