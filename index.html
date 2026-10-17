@@ -220,25 +220,6 @@
                 box.style.borderRadius = `${borderRadius}px`;
                 box.style.opacity = opacity;
             });
-
-            // 2. Die kleinen Grid-Items (Analysis, Geometrie etc.): Driften in die Ecken weg
-            const dynamicItems = document.querySelectorAll('.dynamic-item');
-            dynamicItems.forEach((item, index) => {
-                const rect = item.getBoundingClientRect();
-                const itemCenter = rect.top + rect.height / 2;
-                const distanceToCenter = itemCenter - windowHeight / 2;
-
-                // Gerade Elemente driften nach links (-), ungerade nach rechts (+)
-                const directionX = index % 2 === 0 ? -1 : 1;
-                
-                // Je weiter weg vom Zentrum, desto stärker driften sie nach außen
-                const translateX = (distanceToCenter * 0.4) * directionX;
-                
-                // Skalieren auch leicht
-                let scale = 1 - Math.abs(distanceToCenter) / windowHeight * 0.2;
-
-                item.style.transform = `translate(${translateX}px) scale(${scale})`;
-            });
         });
     </script>
 </body>
