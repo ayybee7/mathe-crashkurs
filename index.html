@@ -83,13 +83,13 @@
             padding: 50px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             text-align: center;
-            /* Schnelle Übergänge für das Skript */
             transition: transform 0.1s ease-out, border-radius 0.1s ease-out, opacity 0.1s ease-out; 
             will-change: transform, opacity, border-radius;
         }
 
         h1, h2 { font-size: 3em; margin-bottom: 10px; font-weight: 700; letter-spacing: -1px; }
         p { font-size: 1.2em; line-height: 1.6; color: #aaa; }
+        .subtitle { font-size: 0.9em; color: #fff; font-weight: bold; margin-top: -10px; margin-bottom: 15px; }
 
         .grid {
             display: flex;
@@ -107,8 +107,59 @@
             padding: 25px;
             flex: 1;
             min-width: 220px;
-            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-            will-change: transform, opacity;
+        }
+
+        /* Styling für die Tabs (Reiter) */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px 0;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .tab-btn.active {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .tab-content {
+            display: none; /* Versteckt Inhalte standardmäßig */
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block; /* Zeigt den aktiven Reiter an */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .combo-note {
+            margin-top: 40px;
+            font-size: 1em;
+            color: #888;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
         }
 
         .cta-button {
@@ -136,53 +187,82 @@
     <nav>
         <a href="#start">Start</a>
         <a href="#konzept">Konzept</a>
-        <a href="#preise">Preise</a>
+        <a href="#angebot">Angebot</a>
         <a href="#ueber-uns">Über Uns</a>
     </nav>
 
     <section id="start">
         <div class="glass-box">
             <h1>Mathe Abi-Crashkurs</h1>
-            <p>Minimaler Aufwand für maximalen Erfolg. Deine Abitur-Vorberitung ganz nach dir gerichtet.</p>
-            <a href="#preise" class="cta-button">Jetzt starten</a>
+            <p>Monochromes Design. Kristallklare Erklärungen. Dein Weg durch die Oberstufen-Mathematik, reduziert auf das Wesentliche.</p>
+            <a href="#angebot" class="cta-button">Jetzt starten</a>
         </div>
     </section>
 
     <section id="konzept">
         <div class="glass-box">
             <h2>Unser Konzept</h2>
-            <p>Jeder von euch hat einen anderen Wissensstand und ein anderes Ziel. Wir holen dich genau dort ab wo du stehst - vom Aufbau der Grundlagen bis zum Feinschliff für die 15 Punkte.</p>
+            <p>Mathematik ist keine Frage von Talent, sondern der richtigen Methode. Unser Konzept holt dich exakt dort ab, wo du stehst – vom systematischen Aufbau fehlender Grundlagen bis zum letzten Feinschliff für dein Abitur.</p>
             <div class="grid">
-                <div class="grid-item dynamic-item">
+                <div class="grid-item">
                     <h3>Fundament</h3>
-                    <p>Dir fällt Mathematik schwer. Du hast Lücken im Grundwissen, deswegen kommen dir neure Themen oder Textaufgaben oft unmöglich vor. </p>
+                    <p>Mathe war bisher dein Endgegner und Lücken blockieren dich? Wir bauen systematisch ein solides Grundwissen auf, damit komplexe Themen und Textaufgaben endlich Sinn ergeben.</p>
                 </div>
-                <div class="grid-item dynamic-item">
+                <div class="grid-item">
                     <h3>Struktur</h3>
-                    <p>Du beherrscht das Grundwissen und verstehst Sachen von allein. Komplexere Themen und Textaufgaben fallen dir jedoch schwer.</p>
+                    <p>Die Basics sitzen, aber bei Transfer- und Textaufgaben verlierst du oft den Faden? Wir trainieren Lösungsstrategien, mit denen du in Klausuren sicher und routiniert punktest.</p>
                 </div>
-                <div class="grid-item dynamic-item">
+                <div class="grid-item">
                     <h3>Feinschliff</h3>
-                    <p> Dir liegt Mathematik und du hast sogar vielleicht Spaß daran. Aber auch du hast Probleme mit bestimmten Aufgaben/Themen und möchtest das beste rausholen. </p>
+                    <p>Du hast bereits ein sehr gutes Verständnis und zielst auf Bestnoten ab. Wir fokussieren uns auf die anspruchsvollsten Aufgabenformate und das letzte Detail für das Einser-Abitur.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="preise">
+    <section id="angebot">
         <div class="glass-box">
-            <h2>Preise</h2>
-            <div class="grid">
-                <div class="grid-item dynamic-item">
-                    <h3>Einzelstunde</h3>
-                    <p>45€ / 60 Minuten<br><br>Intensive 1-zu-1 Betreuung.</p>
-                </div>
-                <div class="grid-item dynamic-item">
-                    <h3>Crashkurs-Paket</h3>
-                    <p>350€ / 10 Stunden<br><br>Die komplette Abitur-Vorbereitung.</p>
+            <h2>Unser Angebot</h2>
+            
+            <!-- Die Buttons für die Reiter -->
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="switchTab(event, 'dauerhaft')">Dauerhaft</button>
+                <button class="tab-btn" onclick="switchTab(event, 'crashkurs')">Crashkurs</button>
+            </div>
+
+            <!-- Inhalt für "Dauerhaft" -->
+            <div id="dauerhaft" class="tab-content active">
+                <div class="grid">
+                    <div class="grid-item">
+                        <h3>Einzelunterricht</h3>
+                        <p class="subtitle">1-2x pro Woche</p>
+                        <p>Du fühlst dich im 1-zu-1-Rahmen am sichersten und wünschst dir die volle, individuelle Betreuung, die sich exakt nach deinem Tempo richtet.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Gruppenunterricht</h3>
+                        <p class="subtitle">1-2x pro Woche</p>
+                        <p>In kleinen Gruppen (bis zu 3-4 Personen), die je nach Wissensstand und Thema formiert werden, erhältst du genau die richtige Hilfe. Durch den gemeinsamen Austausch vertiefst du dein eigenes Wissen enorm.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Aufgabenbetreuung</h3>
+                        <p class="subtitle">Schwerpunkthilfe</p>
+                        <p>Du brauchst keinen klassischen Erklär-Unterricht, sondern Hilfe bei speziellen Aufgaben? Wir besprechen in kleinen Gruppen individuelle Probleme, erarbeiten einfache Lösungen und bereiten uns gezielt vor.</p>
+                    </div>
                 </div>
             </div>
-            <a href="mailto:deine-email@adresse.de" class="cta-button">Kurs buchen</a>
+
+            <!-- Inhalt für "Crashkurs" (Platzhalter) -->
+            <div id="crashkurs" class="tab-content">
+                <div class="grid">
+                    <div class="grid-item" style="width: 100%;">
+                        <h3>Intensiv-Crashkurs</h3>
+                        <p>Hier kommt später dein Text und die Boxen für den Crashkurs hin. Überleg dir in Ruhe, wie du diesen Bereich aufbauen möchtest.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="combo-note">Flexibel lernen: Alle unsere Angebote sind individuell miteinander kombinierbar.</p>
+            <a href="mailto:deine-email@adresse.de" class="cta-button">Kurs anfragen</a>
         </div>
     </section>
 
@@ -194,26 +274,22 @@
     </section>
 
     <script>
+        // Skript für die Scroll-Verformung der großen Glas-Boxen
         window.addEventListener('scroll', () => {
             const windowHeight = window.innerHeight;
             const scrollY = window.scrollY;
 
-            // 1. Die großen Glaskarten: Werden in der Mitte normal, an den Rändern kleiner und runder
             const glassBoxes = document.querySelectorAll('.glass-box');
             glassBoxes.forEach((box, index) => {
                 const rect = box.getBoundingClientRect();
                 const boxCenter = rect.top + rect.height / 2;
                 const distanceToCenter = boxCenter - windowHeight / 2;
                 
-                // Berechne Skalierung (1 in der Mitte, bis zu 0.75 am Rand)
                 let scale = 1 - Math.abs(distanceToCenter) / windowHeight * 0.4;
                 if (scale < 0.75) scale = 0.75;
                 if (scale > 1) scale = 1;
 
-                // Dynamischer Border-Radius (verformt sich beim Scrollen)
                 const borderRadius = 24 + Math.abs(distanceToCenter) * 0.05;
-                
-                // Leichte Transparenz am Rand
                 let opacity = 1 - Math.abs(distanceToCenter) / windowHeight * 0.8;
 
                 box.style.transform = `scale(${scale})`;
@@ -221,6 +297,25 @@
                 box.style.opacity = opacity;
             });
         });
+
+        // Skript für das Umschalten der Reiter (Dauerhaft / Crashkurs)
+        function switchTab(event, tabName) {
+            // Verstecke alle Tab-Inhalte
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Entferne die "active" Klasse von allen Buttons
+            let tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Zeige den aktuellen Tab an und markiere den Button
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
     </script>
 </body>
 </html>
