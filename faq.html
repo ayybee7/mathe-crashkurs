@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Mathe Crashkurs</title>
     <meta name="robots" content="noindex, nofollow">
+    <script>
+    // Prüft, ob der Stempel existiert. Wenn nicht -> Zurück zum Passwort!
+    if (sessionStorage.getItem('zugangGewaehrt') !== 'ja') {
+        window.location.href = 'index.html';
+    }
+    </script>
     <style>
         body {
             margin: 0; padding: 0;
