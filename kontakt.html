@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anfrage - Mathe Crashkurs</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* Hintergrund Blobs */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob1 { width: 400px; height: 400px; background: rgba(255, 255, 255, 0.15); top: -10%; left: -10%; }
+        .blob2 { width: 500px; height: 500px; background: rgba(100, 100, 100, 0.2); bottom: -20%; right: -10%; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        .glass-box {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        h1 { margin-top: 0; font-size: 2.2em; text-align: center; margin-bottom: 30px; }
+
+        /* Formular Styling */
+        form { display: flex; flex-direction: column; gap: 15px; }
+        
+        .form-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .form-group { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+
+        label { font-size: 0.9em; font-weight: 600; color: #ccc; margin-bottom: 5px; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dropdown Optionen lesbar machen (Browser-Standard ist meist weiß auf weiß) */
+        option { background-color: #111; color: #fff; }
+
+        textarea { resize: vertical; min-height: 100px; }
+
+        .cta-button {
+            background: #fff;
+            color: #000;
+            padding: 15px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover { background: #ccc; transform: scale(1.02); }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .back-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blob blob1"></div>
+    <div class="bg-blob blob2"></div>
+
+    <div class="glass-box">
+        <h1>Kursanfrage stellen</h1>
+        
+        <!-- Hier kommt später deine Formspree-ID rein -->
+        <form action="https://formspree.io/f/DEINE_ID_HIER" method="POST">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Anrede</label>
+                    <select name="Anrede" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="Frau">Frau</option>
+                        <option value="Herr">Herr</option>
+                        <option value="Divers">Divers</option>
+                        <option value="Keine Angabe">Keine Angabe</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Vorname</label>
+                    <input type="text" name="Vorname" required>
+                </div>
+                <div class="form-group">
+                    <label>Nachname</label>
+                    <input type="text" name="Nachname" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>E-Mail Adresse</label>
+                    <input type="email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon (optional)</label>
+                    <input type="tel" name="Telefon">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Für wen soll die Nachhilfe erfolgen?</label>
+                    <select name="Zielperson" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="Mich selbst">Mich selbst</option>
+                        <option value="Mein Kind">Mein Kind</option>
+                        <option value="Sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alter der Person</label>
+                    <input type="number" name="Alter" min="10" max="99" required placeholder="z.B. 17">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Aktuelle Stufe</label>
+                    <select name="Stufe" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="EF (10)">EF (10)</option>
+                        <option value="Q1 (GK)">Q1 (GK)</option>
+                        <option value="Q2 (LK)">Q2 (LK)</option>
+                        <option value="Andere">Andere</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Aktueller Stand</label>
+                    <select name="Stand" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="Lückenhaftes Grundwissen">Lückenhaftes Grundwissen</option>
+                        <option value="Starkes Grundwissen">Starkes Grundwissen</option>
+                        <option value="Tiefes Verständnis">Tiefes Verständnis</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Gewünschte Unterrichtsform</label>
+                    <select name="Unterrichtsform" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="Dauerhaft">Dauerhaft</option>
+                        <option value="Crashkurs">Crashkurs</option>
+                        <option value="Beides">Beides</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Präferenz</label>
+                    <select name="Setting" required>
+                        <option value="" disabled selected>Bitte wählen...</option>
+                        <option value="Einzelunterricht">Einzelunterricht</option>
+                        <option value="Gruppenunterricht">Gruppenunterricht</option>
+                        <option value="Beides möglich">Beides möglich</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ihre Nachricht</label>
+                <textarea name="Nachricht" placeholder="Themenwünsche, Besonderheiten oder Fragen..." required></textarea>
+            </div>
+
+            <button type="submit" class="cta-button">Anfrage absenden</button>
+        </form>
+
+        <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+
+</body>
+</html>
