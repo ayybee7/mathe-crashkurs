@@ -79,24 +79,22 @@
     </div>
 
     <script>
-        function checkPassword(event) {
-            // Verhindert, dass die Seite neu lädt
-            event.preventDefault(); 
-            
-            const passwordInput = document.getElementById('pwd').value;
-            const errorMsg = document.getElementById('error-msg');
+    function checkPassword(event) {
+        event.preventDefault(); 
+        
+        const passwordInput = document.getElementById('pwd').value;
+        const errorMsg = document.getElementById('error-msg');
 
-            // HIER DEIN PASSWORT EINTRAGEN (aktuell: mathe2026)
-            if (passwordInput === 'mathe2026') {
-                // Wenn das Passwort stimmt, weiterleiten zur echten Seite
-                window.location.href = 'start.html';
-            } else {
-                // Wenn es falsch ist, Fehlermeldung zeigen
-                errorMsg.style.display = 'block';
-                document.getElementById('pwd').value = ''; // Feld leeren
-            }
+        if (passwordInput === 'mathe2026') {
+            // Den unsichtbaren Stempel für diese Sitzung setzen
+            sessionStorage.setItem('zugangGewaehrt', 'ja');
+            window.location.href = 'start.html';
+        } else {
+            errorMsg.style.display = 'block';
+            document.getElementById('pwd').value = '';
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
