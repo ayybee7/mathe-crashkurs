@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Mathe Crashkurs</title>
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow"> <!-- Versteckt die Seite vor Google -->
+    
+    <!-- HIER IST DER TÜRSTEHER-CODE -->
     <script>
-    // Prüft, ob der Stempel existiert. Wenn nicht -> Zurück zum Passwort!
-    if (sessionStorage.getItem('zugangGewaehrt') !== 'ja') {
-        window.location.href = 'index.html';
-    }
+        if (sessionStorage.getItem('zugangGewaehrt') !== 'ja') {
+            window.location.href = 'index.html';
+        }
     </script>
+    <title>FAQ - Mathe Crashkurs</title>
+
     <style>
         body {
             margin: 0; padding: 0;
