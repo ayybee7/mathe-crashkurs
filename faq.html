@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow"> <!-- Versteckt die Seite vor Google -->
     
-    <!-- HIER IST DER TÜRSTEHER-CODE -->
+    <!-- NEUER TÜRSTEHER-CODE (Mit Zeit-Abfrage) -->
     <script>
-        if (sessionStorage.getItem('zugangGewaehrt') !== 'ja') {
+        const zugangBis = localStorage.getItem('zugangBis');
+        // Wenn kein Stempel da ist ODER die Zeit abgelaufen ist -> Rauswerfen!
+        if (!zugangBis || Date.now() > parseInt(zugangBis)) {
             window.location.href = 'index.html';
         }
     </script>
