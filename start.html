@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathe Crashkurs - Oberstufe & Abitur</title>
     <meta name="robots" content="noindex, nofollow">
+    <!-- NEUER TÜRSTEHER-CODE (Mit Zeit-Abfrage) -->
+    <script>
+        const zugangBis = localStorage.getItem('zugangBis');
+        // Wenn kein Stempel da ist ODER die Zeit abgelaufen ist -> Rauswerfen!
+        if (!zugangBis || Date.now() > parseInt(zugangBis)) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <title>Mathe Crashkurs - Oberstufe & Abitur</title>
     <style>
         html { scroll-behavior: smooth; }
         body {
