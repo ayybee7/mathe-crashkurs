@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Mathe Crashkurs</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #050505; color: #ffffff; overflow-x: hidden;
+        }
+
+        .bg-blob {
+            position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob1 { width: 400px; height: 400px; background: rgba(255, 255, 255, 0.15); top: -10%; left: -10%; }
+        .blob2 { width: 500px; height: 500px; background: rgba(100, 100, 100, 0.2); bottom: -20%; right: -10%; animation-delay: -5s; }
+        .blob3 { width: 300px; height: 300px; background: rgba(200, 200, 200, 0.1); top: 40%; left: 50%; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(25, 25, 25, 0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1000;
+            display: flex; justify-content: center; padding: 15px 0;
+        }
+        nav a {
+            color: #ccc; text-decoration: none; margin: 0 20px; font-weight: 500;
+            transition: color 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9em;
+        }
+        nav a:hover { color: #fff; }
+
+        section {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 100px 20px 40px 20px;
+        }
+
+        .glass-box {
+            width: 90%; max-width: 900px; background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px;
+            padding: 50px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); text-align: center;
+        }
+
+        h2 { font-size: 3em; margin-top: 0; margin-bottom: 10px; font-weight: 700; letter-spacing: -1px; }
+
+        /* FAQ Styling */
+        .faq-container {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 25px;
+            transition: all 0.4s ease;
+            color: #aaa;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+            padding: 0 25px 25px 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blob blob1"></div>
+    <div class="bg-blob blob2"></div>
+    <div class="bg-blob blob3"></div>
+
+    <nav>
+        <a href="index.html#start">Start</a>
+        <a href="index.html#konzept">Konzept</a>
+        <a href="index.html#angebot">Angebot</a>
+        <a href="index.html#ueber-uns">Über Uns</a>
+        <a href="faq.html" style="color: #fff;">FAQ</a> <!-- Leuchtet weiß auf dieser Seite -->
+    </nav>
+
+    <section>
+        <div class="glass-box">
+            <h2>Häufige Fragen (FAQ)</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item">
+                    <div class="faq-question">Wo findet der Unterricht statt?</div>
+                    <div class="faq-answer">Der Unterricht findet wahlweise online über Zoom/Google Meet statt oder nach Absprache auch direkt vor Ort. Wir passen uns da ganz deinen Bedürfnissen an.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Wie läuft die Bezahlung ab?</div>
+                    <div class="faq-answer">Die Bezahlung erfolgt ganz unkompliziert per Rechnung am Ende des Monats. Beim Crashkurs-Paket wird der Betrag vorab überwiesen.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Brauche ich spezielles Material?</div>
+                    <div class="faq-answer">Nein. Bring einfach dein aktuelles Mathebuch, deine Unterlagen aus dem Unterricht und Schreibzeug mit. Zusätzliche Übungsblätter stellen wir dir digital zur Verfügung.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Was passiert, wenn ich mal krank bin?</div>
+                    <div class="faq-answer">Kein Problem! Sag uns einfach rechtzeitig (spätestens 24 Stunden vorher) Bescheid, dann können wir den Termin kostenlos verschieben.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // FAQ Akkordeon Skript
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const currentItem = question.parentElement;
+                const isActive = currentItem.classList.contains('active');
+                
+                // Schließe alle anderen offenen Fragen
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Wenn die geklickte Frage noch nicht offen war, öffne sie
+                if (!isActive) {
+                    currentItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
